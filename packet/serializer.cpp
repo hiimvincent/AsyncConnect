@@ -19,10 +19,8 @@ void serializer::serialize_value(const std::vector<std::string> &value)
 void serializer::deserialize_value(std::string &out_value)
 {
     auto length = read_from_buffer<std::uint32_t>();
-
-    out_value.resize(length + 1);
+    out_value.resize(length);
     memcpy(out_value.data(), serialized_buffer_.data() + deserialized_bytes_, length);
-
     deserialized_bytes_ += length;
 }
 
@@ -31,6 +29,7 @@ void serializer::deserialize_value(std::vector<std::string> &out_value)
     auto num_strings = read_from_buffer<std::uint32_t>();
 
     out_value.resize(num_strings);
+    
     for (std::uint32_t i = 0; i < num_strings; i++)
     {
         std::string deserialized = "";
