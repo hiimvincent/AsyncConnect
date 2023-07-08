@@ -20,7 +20,7 @@ void serializer::deserialize_value(std::string &out_value)
 {
     auto length = read_from_buffer<std::uint32_t>();
 
-    out_value.resize(length);
+    out_value.resize(length + 1);
     memcpy(out_value.data(), serialized_buffer_.data() + deserialized_bytes_, length);
 
     deserialized_bytes_ += length;
