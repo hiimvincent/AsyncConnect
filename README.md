@@ -86,3 +86,9 @@ bool async_connect_client::is_connected( );
 ```
 Get status of connection.
 
+## Extending Packets
+
+For extending packet functionality, you can override ```serialize```, ```deserialize```, and ```get_id```. Check ```packet.hpp```  and ```packet_base.hpp``` for implementation details.
+
+*Note:  Only arithmetic types are supported for packets. To extended supported types, modify or create another serializer class.*
+
